@@ -65,6 +65,8 @@ function drawBall() {
 };
 
 function moveBall() {
+    ballX += (ballSpeed * ballDirectionX);
+    ballY += (ballSpeed * ballDirectionY);
 };
 
 function checkCollision() {
