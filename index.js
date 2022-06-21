@@ -35,8 +35,8 @@ let player1Score = 0; //score before the game start
 let player2Score = 0; //score before the game start
 let interval;
 
-// window.addEventListener('keydown', changeDirection); // eventListeners for latter functions
-// gameRestartBtn.addEventListener('click', restartGame);
+window.addEventListener('keydown', changeDirection); // eventListeners for latter functions
+gameRestartBtn.addEventListener('click', restartGame);
 
 gameStart();
 drawPaddles();
@@ -132,9 +132,6 @@ function changeDirection() {
 };
 
 function updateGameScore() {
-};
-
-function gameCollision() {
 };
 
 function restartGame() {
