@@ -7,8 +7,9 @@ const context = gameGround.getContext('2d');
 const gameBackgroundColor = 'red';
 const gameWidth = gameGround.width;
 const gameHeight = gameGround.height;
-const player1Color = "white";
+const player1Color = "purple";
 const player2Color = "black";
+const playerBorder = 'blue';
 const ballDiameter = 20;
 const ballColor = 'green';
 const ballBorderColor = 'black';
@@ -22,7 +23,7 @@ let player1Properties = {
     height: 80,
     width: 20,
     x: 0,
-    y: gameHeight / 2
+    y: (gameHeight - 80) / 2
 };
 let player2Properties = {
     height: 80,
@@ -32,7 +33,23 @@ let player2Properties = {
 };
 let player1Score = 0; //score before the game start
 let player2Score = 0; //score before the game start
-let interval; //
+let interval;
 
-window.addEventListener('keydown', changeDirection); // eventListeners for later functions
-gameRestartBtn.addEventListener('click', restartGame);
+// window.addEventListener('keydown', changeDirection); // eventListeners for latter functions
+// gameRestartBtn.addEventListener('click', restartGame);
+
+drawPaddles();
+
+function drawPaddles() {
+    context.strokeStyle = playerBorder;
+
+    context.fillStyle = player1Color;
+    context.fillRect(player1Properties.x, player1Properties.y, player1Properties.width, player1Properties.height);
+    context.strokeRect(player1Properties.x, player1Properties.y, player1Properties.width, player1Properties.height);
+
+    context.fillStyle = player2Color;
+    context.fillRect(player2Properties.x, player2Properties.y, player2Properties.width, player2Properties.height);
+    context.strokeRect(player2Properties.x, player2Properties.y, player2Properties.width, player2Properties.height);
+};
+
+
