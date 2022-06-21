@@ -1,0 +1,19 @@
+#game {
+    text-align: center;
+}
+#gameScore {
+    font-family: "Courier New";
+    font-size: 75px;
+}
+#gameGround {
+    border: 2px solid darkblue;
+}
+#gameRestartBtn {
+    font-family: "Courier New";
+    font-size: 50px;
+    width: 250px;
+    height: 100px;
+    border: 2px solid darkblue;
+    border-radius: 2px;
+    cursor: pointer;
+}
