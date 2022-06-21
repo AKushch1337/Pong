@@ -131,6 +131,7 @@ function changeDirection() {
 };
 
 function updateGameScore() {
+    gameScore.textContent = `${player1Score} : ${player2Score}`;
 };
 
 function restartGame() {
