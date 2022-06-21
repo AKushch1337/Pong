@@ -166,18 +166,10 @@ function updateGameScore() {
 function restartGame() {
     player1Score = 0;
     player2Score = 0;
-    player1Properties = {
-        width: 20,
-        height: 80,
-        x: 0,
-        y: (gameHeight-80)/2
-    };
-    player2Properties = {
-        width: 20,
-        height: 80,
-        x: gameWidth - 20,
-        y: (gameHeight - 80)/2
-    };
+    player1Properties.x = 0;
+    player1Properties.y = (gameHeight-80)/2;
+    player2Properties.x = gameWidth - 20;
+    player2Properties.y = (gameHeight-80)/2;
     ballX = 0;
     ballY = 0;
     ballDirectionX = 0;
