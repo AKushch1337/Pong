@@ -4,11 +4,11 @@ const gameGround = document.querySelector('#gameGround');
 const gameScore = document.querySelector('#gameScore');
 const gameRestartBtn = document.querySelector('#gameRestartBtn');
 const context = gameGround.getContext('2d'); //methods and properties to draw and do a lot of things to the canvas
-const gameBackgroundColor = 'red';
+const gameBackgroundColor = 'black';
 const gameWidth = gameGround.width;
 const gameHeight = gameGround.height;
 const player1Color = 'purple';
-const player2Color = 'black';
+const player2Color = 'yellow';
 const playerBorder = 'blue';
 const ballDiameter = 20;
 const ballColor = 'green';
@@ -39,7 +39,6 @@ gameRestartBtn.addEventListener('click', restartGame);
 window.addEventListener("keydown", changeDirection);
 
 gameStart();
-drawPaddles();
 
 function drawPaddles() {
     context.strokeStyle = playerBorder;
@@ -55,6 +54,7 @@ function drawPaddles() {
 
 
 function gameStart() {
+    drawPaddles();
     createBall();
     nextTick();
 };
