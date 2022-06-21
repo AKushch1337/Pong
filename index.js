@@ -87,6 +87,24 @@ function moveBall() {
 };
 
 function checkCollision() {
+    if(ballX >= gameWidth) {
+        player1Score += 1;
+        updateGameScore();
+        createBall();
+        return;
+    }
+    if(ballX <= 0) {
+        player2Score += 1;
+        updateGameScore();
+        createBall();
+        return;
+    }
+    if(ballY >= gameHeight -(ballDiameter / 2)) {
+        ballDirectionY *= -1;
+    }
+    if(ballY <= 0 +(ballDiameter / 2)) {
+        ballDirectionY *= -1;
+    }
 };
 
 function nextTick() {
