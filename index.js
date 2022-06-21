@@ -105,7 +105,16 @@ function checkCollision() {
     if (ballY <= ballDiameter / 2) {
         ballDirectionY *= -1;
     }
-
+    if (ballX <= (player1Properties.x + player1Properties.width + (ballDiameter / 2))) {
+        if (ballY > player1Properties.y && ballY < player1Properties.y + player1Properties.height) {
+            ballDirectionX *= -1;
+        }
+    }
+    if (ballX >= (player2Properties.x - (ballDiameter / 2))) {
+        if (ballY > player2Properties.y && ballY < player2Properties.y + player2Properties.height) {
+            ballDirectionX *= -1;
+        }
+    }
 };
 
 function nextTick() {
