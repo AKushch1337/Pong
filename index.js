@@ -53,12 +53,11 @@ function drawPaddles() {
 };
 
 function gameStart() {
-
 };
 
 function clearBoard() {
     context.fillStyle = gameBackgroundColor;
-    context.fillRect(0,0,gameWidth,gameHeight);
+    context.fillRect(0, 0, gameWidth, gameHeight);
 };
 
 function createBall() { //which way the ball moves when created
@@ -70,7 +69,13 @@ function createBall() { //which way the ball moves when created
     drawBall(ballX, ballY);
 };
 
-function drawBall() {
+function drawBall(ballX, ballY) {
+    context.fillStyle = ballColor;
+    context.strokeStyle = ballBorderColor;
+    context.beginPath();
+    context.arc(ballX,ballY, ballDiameter/2, 0, 2 * Math.PI); //drawing a circle with radius from const, and endAngle of 2 * PI
+    context.stroke();
+    context.fill();
 };
 
 function moveBall() {
