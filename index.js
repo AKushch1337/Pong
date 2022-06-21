@@ -64,7 +64,6 @@ function clearBoard() {
 };
 
 function createBall() { //which way the ball moves when created
-    ballSpeed = 1;
     Math.round(Math.random()) === 1 ? ballDirectionX = -1 : ballDirectionX = 1
     Math.round(Math.random()) === 1 ? ballDirectionY = -1 : ballDirectionY = 1
     ballX = gameWidth / 2; //to spawn in center of the board
