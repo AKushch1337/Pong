@@ -36,6 +36,7 @@ let player2Score = 0; //score before the game start
 let interval;
 
 gameRestartBtn.addEventListener('click', restartGame);
+window.addEventListener("keydown", changeDirection);
 
 gameStart();
 drawPaddles();
@@ -51,7 +52,7 @@ function drawPaddles() {
     context.fillRect(player2Properties.x, player2Properties.y, player2Properties.width, player2Properties.height);
     context.strokeRect(player2Properties.x, player2Properties.y, player2Properties.width, player2Properties.height);
 };
-window.addEventListener("keydown", changeDirection);
+
 
 function gameStart() {
     createBall();
@@ -163,4 +164,25 @@ function updateGameScore() {
 };
 
 function restartGame() {
+    player1Score = 0;
+    player2Score = 0;
+    player1Properties = {
+        width: 20,
+        height: 80,
+        x: 0,
+        y: (gameHeight-80)/2
+    };
+    player2Properties = {
+        width: 20,
+        height: 80,
+        x: gameWidth - 20,
+        y: (gameHeight - 80)/2
+    };
+    ballX = 0;
+    ballY = 0;
+    ballDirectionX = 0;
+    ballDirectionY = 0;
+    updateGameScore();
+    clearInterval(interval);
+    gameStart();
 };
