@@ -76,7 +76,7 @@ function drawBall(ballX, ballY) {
     context.fillStyle = ballColor;
     context.strokeStyle = ballBorderColor;
     context.beginPath();
-    context.arc(ballX,ballY, ballDiameter/2, 0, 2 * Math.PI); //drawing a circle with radius from const, and endAngle of 2 * PI
+    context.arc(ballX, ballY, ballDiameter / 2, 0, 2 * Math.PI); //drawing a circle with radius from const, and endAngle of 2 * PI
     context.stroke();
     context.fill();
 };
@@ -87,24 +87,25 @@ function moveBall() {
 };
 
 function checkCollision() {
-    if(ballX >= gameWidth) {
+    if (ballX >= gameWidth) {
         player1Score += 1;
         updateGameScore();
         createBall();
         return;
     }
-    if(ballX <= 0) {
+    if (ballX <= 0) {
         player2Score += 1;
         updateGameScore();
         createBall();
         return;
     }
-    if(ballY >= gameHeight -(ballDiameter / 2)) {
+    if (ballY >= gameHeight - (ballDiameter / 2)) {
         ballDirectionY *= -1;
     }
-    if(ballY <= 0 +(ballDiameter / 2)) {
+    if (ballY <= ballDiameter / 2) {
         ballDirectionY *= -1;
     }
+
 };
 
 function nextTick() {
@@ -118,7 +119,14 @@ function nextTick() {
     }, 5)
 };
 
-function changeDirection() {};
-function updateGameScore() {};
-function gameCollision() {};
-function restartGame() {};
+function changeDirection() {
+};
+
+function updateGameScore() {
+};
+
+function gameCollision() {
+};
+
+function restartGame() {
+};
