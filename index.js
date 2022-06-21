@@ -3,7 +3,7 @@
 const gameGround = document.querySelector('#gameGround');
 const gameScore = document.querySelector('#gameScore');
 const gameRestartBtn = document.querySelector('#gameRestartBtn');
-const context = gameGround.getContext('2d');
+const context = gameGround.getContext('2d'); //methods and properties to draw and do a lot of things to the canvas
 const gameBackgroundColor = 'red';
 const gameWidth = gameGround.width;
 const gameHeight = gameGround.height;
@@ -35,7 +35,6 @@ let player1Score = 0; //score before the game start
 let player2Score = 0; //score before the game start
 let interval;
 
-window.addEventListener('keydown', changeDirection); // eventListeners for latter functions
 gameRestartBtn.addEventListener('click', restartGame);
 
 gameStart();
@@ -52,6 +51,7 @@ function drawPaddles() {
     context.fillRect(player2Properties.x, player2Properties.y, player2Properties.width, player2Properties.height);
     context.strokeRect(player2Properties.x, player2Properties.y, player2Properties.width, player2Properties.height);
 };
+window.addEventListener("keydown", changeDirection);
 
 function gameStart() {
     createBall();
@@ -127,7 +127,35 @@ function nextTick() {
     }, 5)
 };
 
-function changeDirection() {
+function changeDirection(event) {
+    const keyPressed = event.keyCode;
+    const wKey = 87;
+    const sKey = 83;
+    const arrowUp = 38;
+    const arrowDown = 40;
+
+    switch (keyPressed) {
+        case(wKey):
+            if (player1Properties.y > 0) {
+                player1Properties.y -= playerSpeed;
+            }
+            break;
+        case(sKey):
+            if (player1Properties.y < gameHeight - player1Properties.height) {
+                player1Properties.y += playerSpeed;
+            }
+            break;
+        case(arrowUp):
+            if (player2Properties.y > 0) {
+                player2Properties.y -= playerSpeed;
+            }
+            break;
+        case(arrowDown):
+            if (player2Properties.y < gameHeight - player2Properties.height) {
+                player2Properties.y += playerSpeed;
+            }
+            break;
+    }
 };
 
 function updateGameScore() {
