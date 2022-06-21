@@ -38,6 +38,7 @@ let interval;
 // window.addEventListener('keydown', changeDirection); // eventListeners for latter functions
 // gameRestartBtn.addEventListener('click', restartGame);
 
+gameStart();
 drawPaddles();
 
 function drawPaddles() {
@@ -99,3 +100,7 @@ function nextTick() {
     }, 5)
 };
 
+function changeDirection() {};
+function updateGameScore() {};
+function gameCollision() {};
+function restartGame() {};
