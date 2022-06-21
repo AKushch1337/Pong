@@ -56,6 +56,8 @@ function gameStart() {
 };
 
 function clearBoard() {
+    context.fillStyle = gameBackgroundColor;
+    context.fillRect(0,0,gameWidth,gameHeight);
 };
 
 function createBall() {
