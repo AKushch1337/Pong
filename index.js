@@ -53,6 +53,8 @@ function drawPaddles() {
 };
 
 function gameStart() {
+    createBall();
+    nextTick();
 };
 
 function clearBoard() {
