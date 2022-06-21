@@ -9,3 +9,7 @@ const gameWidth = gameGround.width;
 const gameHeight = gameGround.height;
 const player1Color = "white";
 const player2Color = "black";
+const ballDiameter = 20;
+const ballColor = 'green';
+const ballBorderColor = 'black';
+const playerSpeed = 40;
