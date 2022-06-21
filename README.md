@@ -1,5 +1,7 @@
 # Pong
 
+Course work for KPI first year
+
 ## I don't think you need to present **PONG!**
 
 ## **Rules** are simple: don't let the ball get behing your paddle
