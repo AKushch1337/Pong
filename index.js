@@ -52,9 +52,32 @@ function drawPaddles() {
     context.strokeRect(player2Properties.x, player2Properties.y, player2Properties.width, player2Properties.height);
 };
 
-function gameStart() {};
-function clearBoard() {};
-function createBall() {};
-function drawBall() {};
-function nextTick() {};
+function gameStart() {
+};
+
+function clearBoard() {
+};
+
+function createBall() {
+};
+
+function drawBall() {
+};
+
+function moveBall() {
+};
+
+function checkCollision() {
+};
+
+function nextTick() {
+    interval = setTimeout(() => {
+        clearBoard();
+        drawPaddles();
+        moveBall();
+        drawBall(ballX, ballY);
+        checkCollision();
+        nextTick();
+    }, 5)
+};
 
