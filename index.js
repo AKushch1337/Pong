@@ -83,6 +83,11 @@ const resetPlayerPos = () => {
     player2Properties.y = (gameHeight - 10) / 2;
 }
 
+const updateGameScore = () => {
+    gameScore.textContent = `${scores.player1Score} : ${scores.player2Score}`;
+};
+
+
 const checkCollision = (ball, player) => {
     //checking if the collision happens, return true of false
     player.top = player.y;
@@ -103,10 +108,12 @@ const updatePosition = () => {
     if (ballProperties.x < 0) {
         scores.player2Score++;
         player2Scores.play();
+        updateGameScore();
         resetBallPos();
     } else if (ballProperties.x > gameWidth) {
         scores.player1Score++;
         player1Scores.play();
+        updateGameScore();
         resetBallPos();
     }
 
