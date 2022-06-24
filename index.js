@@ -17,7 +17,7 @@ const ballProperties = {
     color: "green",
     borderColor: "black"
 };
-let player1Properties = {
+const player1Properties = {
     borderColor: "blue",
     color: "purple",
     speed: 40,
@@ -26,7 +26,7 @@ let player1Properties = {
     x: 0,
     y: (gameHeight - 80) / 2,
 };
-let player2Properties = {
+const player2Properties = {
     borderColor: "green",
     color: "yellow",
     speed: 40,
@@ -39,7 +39,6 @@ const scores = {
     player1Score: 0, //score before the game start
     player2Score: 0 //score before the game start
 };
-let interval;
 const hit = new Audio("./sounds/hit.mp3");
 const wall = new Audio("./sounds/wall.mp3");
 const player1Scores = new Audio("./sounds/player1Scores.mp3");
@@ -71,7 +70,7 @@ const drawPaddle = (x, y, width, height, borderColor, color) => {
 const resetBallPos = () => {
     ballProperties.x = gameWidth / 2;
     ballProperties.y = gameHeight / 2;
-    ballProperties.directionX = -ballProperties.directionX;
+    ballProperties.directionX = -ballProperties.directionX; //changes direction
     ballProperties.speed = 3;
 }
 
@@ -90,7 +89,7 @@ const checkCollision = (ball, player) => {
     return player.left < ball.right && player.top < ball.bottom && player.right > ball.left && player.bottom > ball.top;
 }
 
-function updatePosition() {
+const updatePosition = () => {
     //if player scores adds to his score and resets ball position
     if (ballProperties.x - ballProperties.radius < 0) {
         scores.player2Score++;
@@ -105,4 +104,10 @@ function updatePosition() {
     // ball velocity
     ballProperties.x += ballProperties.directionX;
     ballProperties.y += ballProperties.directionY;
+
+    // inverse directionY when hits walls
+    if (ballProperties.y - ballProperties.radius < 0 || ballProperties.y + ballProperties.radius > gameHeight) {
+        ballProperties.directionY = -ballProperties.directionY;
+        wall.play();
+    }
 }
