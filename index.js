@@ -148,7 +148,7 @@ const updatePosition = () => {
         ballProperties.directionY = ballProperties.speed * Math.sin(angleBounce);
 
         // speed up the ball every time it hits the paddle
-        ballProperties.speed += 1;
+        ballProperties.speed += 0.75;
     }
 }
 
@@ -200,6 +200,14 @@ onkeydown = (event) => {
 const gameStart = () => {
     updatePosition();
     drawObjects();
+}
+
+gameRestartBtn.onclick = () => {
+    resetScore();
+    updateGameScore();
+    resetPlayerPos();
+    resetBallPos();
+
 }
 let FPS = 50;
 setInterval(gameStart, 1000 / FPS);
