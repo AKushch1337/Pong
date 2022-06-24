@@ -68,6 +68,13 @@ function drawPaddle(x, y, width, height, borderColor, color) {
 
 }
 
+function resetBallPos() {
+    ballProperties.x = gameWidth / 2;
+    ballProperties.y = gameHeight / 2;
+    ballProperties.directionX = -ballProperties.directionX;
+    ballProperties.speed = 3;
+}
+
 function checkCollision(ball, player) {
     //checking if the collision happens, return true of false
     player.top = player.y;
