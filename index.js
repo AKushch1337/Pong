@@ -85,8 +85,12 @@ const resetPlayerPos = () => {
 
 const updateGameScore = () => {
     gameScore.textContent = `${scores.player1Score} : ${scores.player2Score}`;
-};
+}
 
+const resetScore = () => {
+    scores.player1Score = 0;
+    scores.player2Score = 0;
+}
 
 const checkCollision = (ball, player) => {
     //checking if the collision happens, return true of false
