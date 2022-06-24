@@ -179,3 +179,11 @@ onkeydown = (event) => {
     }
 }
 
+const gameStart = () => {
+    updatePosition();
+    drawObjects();
+}
+let FPS = 50;
+setInterval(gameStart, 1000/FPS);
+
+
