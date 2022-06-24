@@ -8,8 +8,8 @@ const gameBackgroundColor = "black";
 const gameWidth = gameGround.width;
 const gameHeight = gameGround.height;
 const ballProperties = {
-    directionX: 0, //direction where ball will be moving in X axis
-    directionY: 0, //direction where ball will be moving in Y axis
+    directionX: 4, 
+    directionY: 4,
     x: gameWidth / 2, //default placement of the ball
     y: gameHeight / 2, //default placement of the ball
     speed: 2,
@@ -120,5 +120,14 @@ const updatePosition = () => {
         let collidePoint = (ballProperties.y - (player.y + player.height / 2)); //where the ball hits the paddle
         collidePoint = collidePoint / (player.height / 2); //getting number from -1 to 1
     }
+    let angleBounce = (Math.PI / 4) * collidePoint;         // we determine at which angle we want our ball to bounce off(45,0,-45 degrees)
+
+    // change the X and Y velocity direction
+    let direction = (ballProperties.x + ballProperties.radius < gameWidth/2) ? 1 : -1;
+    ballProperties.directionX = direction * ballProperties.speed * Math.cos(angleBounce);
+    ballProperties.directionY = ballProperties.speed * Math.sin(angleBounce);
+
+    // speed up the ball every time it hits the paddle
+    ballProperties.speed += 0.5;
 }
 
