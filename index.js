@@ -110,4 +110,15 @@ const updatePosition = () => {
         ballProperties.directionY = -ballProperties.directionY;
         wall.play();
     }
+
+    // we check if the paddle hits player1 or player2
+    let player = (ballProperties.x + ballProperties.radius < gameWidth / 2) ? player1Properties : player2Properties;
+
+    // if the ball hits a paddle
+    if (checkCollision(ballProperties, player)) {
+        hit.play();
+        let collidePoint = (ballProperties.y - (player.y + player.height / 2)); //where the ball hits the paddle
+        collidePoint = collidePoint / (player.height / 2); //getting number from -1 to 1
+    }
 }
+
