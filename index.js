@@ -148,3 +148,34 @@ const drawObjects = () => {
     //draw player2 paddle
     drawPaddle(player2Properties.x, player2Properties.y, player2Properties.width, player2Properties.height, player2Properties.borderColor, player2Properties.color);
 }
+onkeydown = (event) => {
+    const keyPressed = event.code;
+    const player1Up = "KeyW";
+    const player1Down = "KeyS";
+    const player2Up = "ArrowUp";
+    const player2Down = "ArrowDown";
+
+    switch (keyPressed) {
+        case(player1Up):
+            if (player1Properties.y > 0) {
+                player1Properties.y -= playerSpeed;
+            }
+            break;
+        case(player1Down):
+            if (player1Properties.y < gameHeight - player1Properties.height) {
+                player1Properties.y += playerSpeed;
+            }
+            break;
+        case(player2Up):
+            if (player2Properties.y > 0) {
+                player2Properties.y -= playerSpeed;
+            }
+            break;
+        case(player2Down):
+            if (player2Properties.y < gameHeight - player2Properties.height) {
+                player2Properties.y += playerSpeed;
+            }
+            break;
+    }
+}
+
