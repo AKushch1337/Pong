@@ -8,36 +8,36 @@ const gameBackgroundColor = "black";
 const gameWidth = gameGround.width;
 const gameHeight = gameGround.height;
 const ballProperties = {
-    directionX : 0, //direction where ball will be moving in X axis
-    directionY : 0, //direction where ball will be moving in Y axis
-    X : gameWidth / 2, //default placement of the ball
-    Y : gameHeight / 2, //default placement of the ball
-    speed : 2,
-    radius : 10,
-    color : "green",
-    borderColor : "black"
+    directionX: 0, //direction where ball will be moving in X axis
+    directionY: 0, //direction where ball will be moving in Y axis
+    x: gameWidth / 2, //default placement of the ball
+    y: gameHeight / 2, //default placement of the ball
+    speed: 2,
+    radius: 10,
+    color: "green",
+    borderColor: "black"
 };
 let player1Properties = {
-    borderColor : "blue",
-    color : "purple",
-    speed : 40,
+    borderColor: "blue",
+    color: "purple",
+    speed: 40,
     height: 80,
     width: 20,
     x: 0,
     y: (gameHeight - 80) / 2,
 };
 let player2Properties = {
-    borderColor : "green",
-    color : "yellow",
-    speed : 40,
+    borderColor: "green",
+    color: "yellow",
+    speed: 40,
     height: 80,
     width: 20,
     x: gameWidth - 20,
     y: (gameHeight - 80) / 2,
 };
 const scores = {
-    player1Score : 0, //score before the game start
-    player2Score : 0 //score before the game start
+    player1Score: 0, //score before the game start
+    player2Score: 0 //score before the game start
 };
 let interval;
 const hit = new Audio("./sounds/hit.mp3");
@@ -49,16 +49,18 @@ function clearBoard() {
     context.fillStyle = gameBackgroundColor;
     context.fillRect(0, 0, gameWidth, gameHeight);
 }
-function drawBall(ballX, ballY) {
-    context.fillStyle = ballProperties.color;
-    context.strokeStyle = ballProperties.borderColor;
+
+function drawBall(color, borderColor, x, y, radius) {
+    context.fillStyle = color;
+    context.strokeStyle = borderColor;
     context.beginPath();
-    context.arc(ballProperties.X, ballProperties.Y, ballProperties.radius, 0, 2 * Math.PI); //drawing a circle with radius from const, and endAngle of 2 * PI
+    context.arc(x, y, radius, 0, 2 * Math.PI); //drawing a circle with radius from const, and endAngle of 2 * PI
     context.closePath();
     context.stroke();
     context.fill();
 }
-function drawPaddles(x, y, width, height, borderColor, color){
+
+function drawPaddle(x, y, width, height, borderColor, color) {
     context.strokeStyle = borderColor;
     context.fillStyle = color;
     context.strokeRect(x, y, width, height);
@@ -66,4 +68,17 @@ function drawPaddles(x, y, width, height, borderColor, color){
 
 }
 
+function checkCollision(ball, player) {
+    //checking if the collision happens, return true of false
+    player.top = player.y;
+    player.bottom = player.y + player.height;
+    player.left = player.x;
+    player.right = player.x + player.width;
 
+    ball.top = ball.y - ball.radius;
+    ball.bottom = ball.y + ball.radius;
+    ball.left = ball.x - ball.radius;
+    ball.right = ball.x + ball.radius;
+
+    return player.left < ball.right && player.top < ball.bottom && player.right > ball.left && player.bottom > ball.top;
+}
