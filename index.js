@@ -7,33 +7,34 @@ const context = gameGround.getContext("2d"); //methods and properties to draw an
 const gameBackgroundColor = "black";
 const gameWidth = gameGround.width;
 const gameHeight = gameGround.height;
+const playerSpeed = 40;
 const ballProperties = {
-    directionX: 4, 
+    directionX: 4,
     directionY: 4,
     x: gameWidth / 2, //default placement of the ball
     y: gameHeight / 2, //default placement of the ball
-    speed: 2,
+    speed: 4,
     radius: 10,
     color: "green",
-    borderColor: "black"
+    borderColor: "white"
 };
 const player1Properties = {
-    borderColor: "blue",
+    borderColor: "white",
     color: "purple",
     speed: 40,
-    height: 80,
-    width: 20,
+    height: 100,
+    width: 10,
     x: 0,
-    y: (gameHeight - 80) / 2,
+    y: (gameHeight - 100) / 2,
 };
 const player2Properties = {
-    borderColor: "green",
-    color: "yellow",
+    borderColor: "white",
+    color: "blue",
     speed: 40,
-    height: 80,
-    width: 20,
-    x: gameWidth - 20,
-    y: (gameHeight - 80) / 2,
+    height: 100,
+    width: 10,
+    x: gameWidth - 10,
+    y: (gameHeight - 100) / 2,
 };
 const scores = {
     player1Score: 0, //score before the game start
@@ -68,10 +69,11 @@ const drawPaddle = (x, y, width, height, borderColor, color) => {
 }
 
 const resetBallPos = () => {
+    ballProperties.speed = 3;
     ballProperties.x = gameWidth / 2;
     ballProperties.y = gameHeight / 2;
-    ballProperties.directionX = -ballProperties.directionX; //changes direction
-    ballProperties.speed = 3;
+    ballProperties.directionX = 4;
+    ballProperties.directionY = 4;
 }
 
 const checkCollision = (ball, player) => {
@@ -91,11 +93,11 @@ const checkCollision = (ball, player) => {
 
 const updatePosition = () => {
     //if player scores adds to his score and resets ball position
-    if (ballProperties.x - ballProperties.radius < 0) {
+    if (ballProperties.x < 0) {
         scores.player2Score++;
         player2Scores.play();
         resetBallPos();
-    } else if (ballProperties.x + ballProperties.radius > gameWidth) {
+    } else if (ballProperties.x > gameWidth) {
         scores.player1Score++;
         player1Scores.play();
         resetBallPos();
@@ -119,15 +121,30 @@ const updatePosition = () => {
         hit.play();
         let collidePoint = (ballProperties.y - (player.y + player.height / 2)); //where the ball hits the paddle
         collidePoint = collidePoint / (player.height / 2); //getting number from -1 to 1
+
+        let angleBounce = (Math.PI / 4) * collidePoint;         // we determine at which angle we want our ball to bounce off(45,0,-45 degrees)
+
+        // change the X and Y velocity direction
+        let direction = (ballProperties.x + ballProperties.radius < gameWidth / 2) ? 1 : -1;
+        ballProperties.directionX = direction * ballProperties.speed * Math.cos(angleBounce);
+        ballProperties.directionY = ballProperties.speed * Math.sin(angleBounce);
+
+        // speed up the ball every time it hits the paddle
+        ballProperties.speed += 1;
     }
-    let angleBounce = (Math.PI / 4) * collidePoint;         // we determine at which angle we want our ball to bounce off(45,0,-45 degrees)
-
-    // change the X and Y velocity direction
-    let direction = (ballProperties.x + ballProperties.radius < gameWidth/2) ? 1 : -1;
-    ballProperties.directionX = direction * ballProperties.speed * Math.cos(angleBounce);
-    ballProperties.directionY = ballProperties.speed * Math.sin(angleBounce);
-
-    // speed up the ball every time it hits the paddle
-    ballProperties.speed += 0.5;
 }
 
+const drawObjects = () => {
+
+    //use func clearBoard
+    clearBoard();
+
+    //draw ball
+    drawBall(ballProperties.color, ballProperties.borderColor, ballProperties.x, ballProperties.y, ballProperties.radius);
+
+    //draw player1 paddle
+    drawPaddle(player1Properties.x, player1Properties.y, player1Properties.width, player1Properties.height, player1Properties.borderColor, player1Properties.color);
+
+    //draw player2 paddle
+    drawPaddle(player2Properties.x, player2Properties.y, player2Properties.width, player2Properties.height, player2Properties.borderColor, player2Properties.color);
+}
