@@ -76,6 +76,13 @@ const resetBallPos = () => {
     ballProperties.directionY = 4;
 }
 
+const resetPlayerPos = () => {
+    player1Properties.x = 0;
+    player1Properties.y = (gameHeight - 10) / 2;
+    player2Properties.x = gameWidth - 10;
+    player2Properties.y = (gameHeight - 10) / 2;
+}
+
 const checkCollision = (ball, player) => {
     //checking if the collision happens, return true of false
     player.top = player.y;
@@ -184,6 +191,6 @@ const gameStart = () => {
     drawObjects();
 }
 let FPS = 50;
-setInterval(gameStart, 1000/FPS);
+setInterval(gameStart, 1000 / FPS);
 
 
