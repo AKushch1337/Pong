@@ -23,8 +23,8 @@ let player1Properties = {
     speed : 40,
     height: 80,
     width: 20,
-    X: 0,
-    Y: (gameHeight - 80) / 2,
+    x: 0,
+    y: (gameHeight - 80) / 2,
 };
 let player2Properties = {
     borderColor : "green",
@@ -49,7 +49,6 @@ function clearBoard() {
     context.fillStyle = gameBackgroundColor;
     context.fillRect(0, 0, gameWidth, gameHeight);
 }
-
 function drawBall(ballX, ballY) {
     context.fillStyle = ballProperties.color;
     context.strokeStyle = ballProperties.borderColor;
@@ -58,6 +57,13 @@ function drawBall(ballX, ballY) {
     context.closePath();
     context.stroke();
     context.fill();
+}
+function drawPaddles(x, y, width, height, borderColor, color){
+    context.strokeStyle = borderColor;
+    context.fillStyle = color;
+    context.strokeRect(x, y, width, height);
+    context.fillRect(x, y, width, height);
+
 }
 
 
