@@ -45,12 +45,12 @@ const wall = new Audio("./sounds/wall.mp3");
 const player1Scores = new Audio("./sounds/player1Scores.mp3");
 const player2Scores = new Audio("./sounds/player2Scores.mp3");
 
-function clearBoard() {
+const clearBoard = () => {
     context.fillStyle = gameBackgroundColor;
     context.fillRect(0, 0, gameWidth, gameHeight);
 }
 
-function drawBall(color, borderColor, x, y, radius) {
+const drawBall = (color, borderColor, x, y, radius) => {
     context.fillStyle = color;
     context.strokeStyle = borderColor;
     context.beginPath();
@@ -60,7 +60,7 @@ function drawBall(color, borderColor, x, y, radius) {
     context.fill();
 }
 
-function drawPaddle(x, y, width, height, borderColor, color) {
+const drawPaddle = (x, y, width, height, borderColor, color) => {
     context.strokeStyle = borderColor;
     context.fillStyle = color;
     context.strokeRect(x, y, width, height);
@@ -68,14 +68,14 @@ function drawPaddle(x, y, width, height, borderColor, color) {
 
 }
 
-function resetBallPos() {
+const resetBallPos = () => {
     ballProperties.x = gameWidth / 2;
     ballProperties.y = gameHeight / 2;
     ballProperties.directionX = -ballProperties.directionX;
     ballProperties.speed = 3;
 }
 
-function checkCollision(ball, player) {
+const checkCollision = (ball, player) => {
     //checking if the collision happens, return true of false
     player.top = player.y;
     player.bottom = player.y + player.height;
@@ -88,4 +88,21 @@ function checkCollision(ball, player) {
     ball.right = ball.x + ball.radius;
 
     return player.left < ball.right && player.top < ball.bottom && player.right > ball.left && player.bottom > ball.top;
+}
+
+function updatePosition() {
+    //if player scores adds to his score and resets ball position
+    if (ballProperties.x - ballProperties.radius < 0) {
+        scores.player2Score++;
+        player2Scores.play();
+        resetBallPos();
+    } else if (ballProperties.x + ballProperties.radius > gameWidth) {
+        scores.player1Score++;
+        player1Scores.play();
+        resetBallPos();
+    }
+
+    // ball velocity
+    ballProperties.x += ballProperties.directionX;
+    ballProperties.y += ballProperties.directionY;
 }
