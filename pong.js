@@ -239,5 +239,5 @@ gameRestartBtn.onclick = () => {
     resetPlayerPos();
     resetBallPos();
 };
-let FPS = 50;
+const FPS = 50;
 setInterval(gameStart, 1000 / FPS);
